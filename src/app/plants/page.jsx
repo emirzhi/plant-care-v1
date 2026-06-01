@@ -10,8 +10,6 @@ export default async function Plants() {
 
     const { data, error } = await supabase.from("plants").select("*");
 
-    console.log("Plants data:", data);
-
     const paths = data
         .filter(plant => plant.photo_url)
         .map(plant => plant.photo_url);
@@ -19,7 +17,6 @@ export default async function Plants() {
     const { data: signed, error: signedError } = await supabase.storage
         .from("plant-photos")
         .createSignedUrls(paths, 3600);
-        
 
     const plantsWithPhotos = data.map((plant) => {
         const signedUrlObj = signed.find((s) => s.path === plant.photo_url);

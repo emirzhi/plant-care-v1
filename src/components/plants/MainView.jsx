@@ -7,6 +7,8 @@ import { FaHome } from "react-icons/fa";
 import { FaSeedling, FaPlus } from "react-icons/fa6";
 import { PiCactusFill, PiFlowerFill, PiTreeFill, PiLeafFill, PiTreePalmFill, PiPottedPlantFill } from "react-icons/pi";
 
+const navLinks = ["My Collection", "My Tasks", "My Reports", "About"];
+
 const tabs = [
     { label: "All Plants", icon: PiPottedPlantFill },
     { label: "Houseplants", icon: FaHome },
@@ -17,10 +19,22 @@ const tabs = [
     { label: "Ferns & Palms", icon: PiTreePalmFill },
     { label: "Other", icon: FaSeedling },
 ];
-const navLinks = ["My Collection", "My Tasks", "My Reports", "About"];
+
+const filterMap = {
+    "All Plants": null,
+    "Houseplants": ["houseplant"],
+    "Succulents & Cacti": ["succulent", "cactus"],
+    "Flowering Plants": ["flowering"],
+    "Trees & Shrubs": ["tree", "shrub"],
+    "Herbs & Edibles": ["herb", "edible"],
+    "Ferns & Palms": ["fern", "palm"],
+    "Other": ["other"],
+};
 
 export default function MainView({ plants = [] }) {
     const [activeTab, setActiveTab] = useState("All Plants");
+
+    const filteredPlants = filterMap[activeTab] ? plants.filter((p) => filterMap[activeTab].includes(p.type)) : plants;
 
     return (
         <div className="min-h-screen bg-stone-50 p-6 text-stone-900">
@@ -77,7 +91,7 @@ export default function MainView({ plants = [] }) {
                     </Link>
                 </div>
 
-                <PlantsGrid plants={plants} />
+                <PlantsGrid plants={filteredPlants} />
             </div>
         </div>
     );

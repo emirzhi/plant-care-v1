@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaCheck } from "react-icons/fa6";
 import { PiPottedPlantFill, PiWarningFill, PiInfoFill } from "react-icons/pi";
 
@@ -13,7 +14,17 @@ export default function Result({
     onSelect,
     onBack,
     onContinue,
+    loading = false,
 }) {
+    const [enterCustomName, setEnterCustomName] = useState(false);
+    const [customName, setCustomName] = useState("");
+
+    const handleContinue = () => {
+        const scientificName = selected?.species_scientific || customName;
+        const commonName = selected?.species_common || "";
+        onContinue(scientificName, commonName);
+    };
+
     return (
         <section className="space-y-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-4">
@@ -40,7 +51,7 @@ export default function Result({
             </div>
 
             {note && (
-                <div className="flex gap-3 rounded-xl bg-emerald-50/60 p-4">
+                <div className="flex gap-3 items-center rounded-xl bg-emerald-50/60 p-4">
                     <PiInfoFill className="h-5 w-5 shrink-0 text-emerald-600" />
                     <p className="text-sm leading-relaxed text-stone-700">{note}</p>
                 </div>
@@ -54,7 +65,7 @@ export default function Result({
                         <div key={c.species_scientific}>
                             <button
                                 type="button"
-                                onClick={() => onSelect(c)}
+                                onClick={() => { onSelect(c) }}
                                 className={
                                     isSelected
                                         ? "flex w-full cursor-pointer items-center gap-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/50 p-4 text-left transition"
@@ -101,45 +112,78 @@ export default function Result({
             </div>
 
             {healthIssues.length > 0 && (
-                <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-4">
-                    <div className="mb-2 flex items-center gap-2">
-                        <PiWarningFill className="h-5 w-5 text-amber-500" />
-                        <h2 className="text-sm font-semibold text-amber-900">
+                <div className="flex items-center rounded-xl border border-amber-200 bg-amber-50/60 p-4">
+                    <PiWarningFill className="mb-2 h-5 w-5 text-amber-600" />
+                    <div className="mb-2 gap-2">
+                        <h2 className="ml-7 flex items-center text-sm font-semibold text-amber-900">
                             Visible health issues
                         </h2>
-                    </div>
-                    <div className="ml-7 list-disc space-y-1 text-sm text-amber-900/80">
-                        {healthIssues.map((issue, i) => (
-                            <div key={i}>{issue}</div>
-                        ))}
+                        <div className="ml-7 list-disc space-y-1 text-sm text-amber-900/80">
+                            {healthIssues.map((issue, i) => (
+                                <div key={i}>• {issue}</div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
 
-            <button
-                type="button"
-                className="w-full cursor-pointer rounded-xl border border-dashed border-stone-300 px-4 py-3 text-sm text-stone-600 hover:border-stone-400 hover:text-stone-800"
-            >
-                None of these match
-            </button>
+            {enterCustomName ? (
+                <div>
+                    <label className="block">
+                        <span className="mb-1 block text-sm font-medium text-stone-700">
+                            Plant name
+                        </span>
+                        <input
+                            type="text"
+                            value={customName}
+                            onChange={
+                                (e) => setCustomName(e.target.value)
+                            }
+                            placeholder="e.g. Jade Plant"
+                            className="w-full rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
+                        />
+                    </label>
+                </div>
+            ) : (
+                <button
+                    type="button"
+                    onClick={() => {
+                        setEnterCustomName(true);
+                        onSelect(null);
+                    }}
+                    className="w-full cursor-pointer rounded-xl border border-dashed border-stone-300 px-4 py-3 text-sm text-stone-600 hover:border-stone-400 hover:text-stone-800"
+                >
+                    None of these match
+                </button>
+            )}
 
             <div className="flex items-center justify-between gap-3 pt-2">
                 <button
                     type="button"
                     onClick={onBack}
-                    className="flex cursor-pointer items-center gap-2 rounded-xl border border-stone-200 bg-white px-4 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-50"
+                    disabled={loading}
+                    className="flex cursor-pointer items-center gap-2 rounded-xl border border-stone-200 bg-white px-4 py-2.5 text-sm font-medium text-stone-700 hover:bg-stone-50 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                     <FaArrowLeft className="h-3.5 w-3.5" />
                     Retake
                 </button>
                 <button
                     type="button"
-                    disabled={!selected}
-                    onClick={onContinue}
+                    disabled={(!selected && !customName) || loading}
+                    onClick={() => handleContinue()}
                     className="flex cursor-pointer items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-600 disabled:cursor-not-allowed disabled:bg-stone-200 disabled:text-stone-400"
                 >
-                    Continue
-                    <FaArrowRight className="h-3.5 w-3.5" />
+                    {loading ? (
+                        <>
+                            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                            Generating care...
+                        </>
+                    ) : (
+                        <>
+                            Continue
+                            <FaArrowRight className="h-3.5 w-3.5" />
+                        </>
+                    )}
                 </button>
             </div>
         </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa6";
 import Identify from "@/components/new/Identify";
@@ -20,6 +21,11 @@ export default function MainView() {
     const [selected, setSelected] = useState(null);
     const [loading, setLoading] = useState(false);
     const [identifyResult, setIdentifyResult] = useState(null);
+    const [careSettings, setCareSettings] = useState(null);
+    const [base64Photo, setBase64Photo] = useState(null);
+    const [nickname, setNickname] = useState("");
+    const [location, setLocation] = useState("");
+    const [acquiredAt, setAcquiredAt] = useState("");
 
     const currentIndex = steps.findIndex((s) => s.key === step);
 
@@ -28,6 +34,7 @@ export default function MainView() {
         try {
             const blob = await compressImage(file);
             const img = await blobToBase64(blob);
+            setBase64Photo(img);
 
             const response = await fetch("/api/identify", {
                 method: "POST",
@@ -41,11 +48,13 @@ export default function MainView() {
                     species_scientific: data.primary.scientific_name,
                     species_common: data.primary.common_name,
                     confidence: data.primary.confidence,
+                    type: data.primary.type,
                 },
                 ...(data.alternatives || []).map((a) => ({
                     species_scientific: a.scientific_name,
                     species_common: a.common_name,
                     confidence: a.confidence,
+                    type: a.type,
                 })),
             ];
 
@@ -62,6 +71,51 @@ export default function MainView() {
             setLoading(false);
         }
     };
+
+    const handleCareSettings = async (plantName, species) => {
+        setLoading(true);
+        try {
+            const response = await fetch("/api/care", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ plantName, species }),
+            });
+            const data = await response.json();
+            setCareSettings(data);
+            setStep("care");
+        } catch (error) {
+            console.error("Network error during care settings generation:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    const handleSavePlant = async () => {
+        setLoading(true);
+        try {
+            const response = await fetch("/api/new", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    plant: { ...selected, nickname, location, acquiredAt },
+                    healthIssues: identifyResult?.healthIssues || null,
+                    care: careSettings,
+                    file: base64Photo
+                }),
+            });
+            const data = await response.json();
+            if (data.success) {
+                // Redirect to plant detail page or show success message
+                redirect(`/plants`);
+            } else {
+                console.error("Error saving plant:", data.error);
+            }
+        } catch (error) {
+            console.error("Network error during plant saving:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <div className="min-h-screen bg-stone-50 p-6 text-stone-900">
@@ -136,7 +190,13 @@ export default function MainView() {
                         selected={selected}
                         onSelect={setSelected}
                         onBack={() => setStep("identify")}
-                        onContinue={() => setStep("care")}
+                        onContinue={() =>
+                            handleCareSettings(
+                                selected?.species_common,
+                                selected?.species_scientific,
+                            )
+                        }
+                        loading={loading}
                     />
                 )}
 
@@ -144,7 +204,16 @@ export default function MainView() {
                     <CareSettings
                         photo={photo}
                         plant={selected}
+                        careSettings={careSettings}
                         onBack={() => setStep("result")}
+                        onSave={handleSavePlant}
+                        loading={loading}
+                        nickname={nickname}
+                        onNicknameChange={setNickname}
+                        setLocation={setLocation}
+                        location={location}
+                        acquisitionDate={acquiredAt}
+                        setAcquisitionDate={setAcquiredAt}
                     />
                 )}
             </div>

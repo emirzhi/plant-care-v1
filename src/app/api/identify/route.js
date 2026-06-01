@@ -8,8 +8,8 @@ const SYSTEM_PROMPT = `You are a botanist specializing in plant identification. 
 
 Return ONLY a JSON object — no markdown, no code fences, no preamble or explanation — matching exactly this shape:
 {
-  "primary": { "common_name": string, "scientific_name": string, "confidence": number },
-  "alternatives": [ { "common_name": string, "scientific_name": string, "confidence": number } ],
+  "primary": { "common_name": string, "scientific_name": string, "confidence": number, "type": "houseplant" | "succulent" | "cacti" | "flowering" | "tree" | "shrub" | "herb" | "edible" | "fern" | "palm" | "other" },
+  "alternatives": [ { "common_name": string, "scientific_name": string, "confidence": number, "type": "houseplant" | "succulent" | "cacti" | "flowering" | "tree" | "shrub" | "herb" | "edible" | "fern" | "palm" | "other" } ],
   "visible_health_issues": [ string ],
   "note": string (optional)
 }
@@ -17,8 +17,9 @@ Return ONLY a JSON object — no markdown, no code fences, no preamble or explan
 Rules:
 - "confidence" is a decimal between 0 and 1.
 - "primary" is your single best guess. "alternatives" holds up to 2 other plausible species, most likely first.
+- "type" is the broadest applicable category from the listed enum. Use "houseplant" for foliage plants typically grown indoors; "succulent" for non-cactus succulents (e.g. Aloe, Jade, Echeveria); "cacti" for cacti; "flowering" when blooms are the main feature; "tree" or "shrub" for woody outdoor specimens; "herb" for culinary/medicinal herbs (basil, mint, lavender); "edible" for fruit/vegetable crops; "fern" for ferns; "palm" for palms; "other" only when none fit.
 - "visible_health_issues" lists visible problems (e.g. "yellowing lower leaves", "brown leaf tips", "signs of pests"). Use an empty array if none are visible.
-- If the image contains no identifiable plant, set primary.confidence to 0, use primary.common_name "Unknown" with scientific_name "", leave alternatives empty, and explain in "note".
+- If the image contains no identifiable plant, set primary.confidence to 0, use primary.common_name "Unknown" with scientific_name "" and type "other", leave alternatives empty, and explain in "note".
 - Prefer widely-kept houseplant species.
 - Output valid JSON and nothing else.`;
 
@@ -27,6 +28,7 @@ export async function POST(request) {
     common_name: z.string(),
     scientific_name: z.string(),
     confidence: z.number().min(0).max(1),
+    type: z.enum(["houseplant", "succulent", "cacti", "flowering", "tree", "shrub", "herb", "edible", "fern", "palm", "other"]),
   });
 
   const mainSchema = z.object({

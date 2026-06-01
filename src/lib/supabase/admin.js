@@ -9,5 +9,5 @@ export async function getSupabaseAdminClient() {
     })
 
     // Access auth admin api
-    return supabase.auth.admin
+    return supabase
 }

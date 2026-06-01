@@ -11,6 +11,9 @@ import {
     PiScissorsFill,
     PiPlusBold,
     PiPottedPlantFill,
+    PiCloudFill,
+    PiThermometerFill,
+    PiPawPrintFill,
 } from "react-icons/pi";
 
 const taskIcons = {
@@ -22,20 +25,35 @@ const taskIcons = {
     sunlight: PiSunFill,
 };
 
-const defaultTasks = [
-    { task_type: "water", interval_days: 7, paused: false },
-    { task_type: "rotate", interval_days: 14, paused: false },
-    { task_type: "fertilize", interval_days: 30, paused: false },
-    { task_type: "mist", interval_days: 3, paused: true },
-];
-
 const labelize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 
-export default function CareSettings({ photo, plant, onBack }) {
-    const [nickname, setNickname] = useState("");
-    const [location, setLocation] = useState("");
-    const [acquiredAt, setAcquiredAt] = useState("");
-    const [tasks, setTasks] = useState(defaultTasks);
+const buildTasksFromRoutine = (routine) => {
+    return [
+        {
+            task_type: "water",
+            interval_days: routine.watering?.interval_days_summer,
+            paused: false,
+        },
+        {
+            task_type: "rotate",
+            interval_days: routine.rotation_days,
+            paused: !routine.rotation_days,
+        },
+        {
+            task_type: "fertilize",
+            interval_days: routine.fertilizing?.interval_days_growing_season,
+            paused: false,
+        },
+        {
+            task_type: "mist",
+            interval_days: routine.mist?.interval_days ?? 0,
+            paused: routine.mist?.interval_days == null,
+        },
+    ];
+};
+
+export default function CareSettings({ photo, plant, careSettings, onBack, onSave, loading, nickname, onNicknameChange, location, setLocation, acquiredAt, setAcquiredAt }) {
+    const [tasks, setTasks] = useState(() => buildTasksFromRoutine(careSettings));
 
     const updateTask = (i, patch) => {
         setTasks((prev) => prev.map((t, idx) => (idx === i ? { ...t, ...patch } : t)));
@@ -81,7 +99,7 @@ export default function CareSettings({ photo, plant, onBack }) {
                         <input
                             type="text"
                             value={nickname}
-                            onChange={(e) => setNickname(e.target.value)}
+                            onChange={(e) => onNicknameChange(e.target.value)}
                             placeholder="e.g. Mona"
                             className="w-full rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
                         />
@@ -189,6 +207,96 @@ export default function CareSettings({ photo, plant, onBack }) {
                 </button>
             </div>
 
+            {careSettings && (
+                <div className="space-y-3">
+                    <div>
+                        <h2 className="text-base font-semibold text-stone-900">Plant needs</h2>
+                        <p className="text-xs text-stone-500">
+                            From the AI-generated care profile.
+                        </p>
+                    </div>
+
+                    <div className="divide-y divide-stone-100 overflow-hidden rounded-xl border border-stone-200">
+                        <div className="flex items-start gap-3 bg-white px-4 py-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50">
+                                <PiSunFill className="h-5 w-5 text-emerald-500" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p className="font-medium text-stone-900">Light – {careSettings.light?.level}</p>
+                                {careSettings.light?.notes && (
+                                    <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                                        {careSettings.light.notes}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-3 bg-white px-4 py-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50">
+                                <PiCloudFill className="h-5 w-5 text-emerald-500" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p className="font-medium text-stone-900">Humidity – {careSettings.humidity?.level}</p>
+                                {careSettings.humidity?.notes && (
+                                    <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                                        {careSettings.humidity.notes}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-3 bg-white px-4 py-3">
+                            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50">
+                                <PiThermometerFill className="h-5 w-5 text-emerald-500" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p className="font-medium text-stone-900">Temperature {careSettings.temperature_range_c
+                                    ? `${careSettings.temperature_range_c[0]}–${careSettings.temperature_range_c[1]} °C`
+                                    : "—"}
+                                </p>
+                                <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                                    Comfortable indoor range for this species.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-3 bg-white px-4 py-3">
+                            <div
+                                className={
+                                    careSettings.toxicity?.pets
+                                        ? "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-amber-50"
+                                        : "flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-50"
+                                }
+                            >
+                                <PiPawPrintFill
+                                    className={
+                                        careSettings.toxicity?.pets
+                                            ? "h-5 w-5 text-amber-500"
+                                            : "h-5 w-5 text-emerald-500"
+                                    }
+                                />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                                <p
+                                    className={
+                                        careSettings.toxicity?.pets
+                                            ? "font-medium text-amber-700"
+                                            : "font-medium text-stone-500"
+                                    }
+                                >
+                                    {careSettings.toxicity?.pets ? "Toxic to pets" : "Pet safe"}
+                                </p>
+                                {careSettings.toxicity?.notes && (
+                                    <p className="mt-1 text-xs leading-relaxed text-stone-500">
+                                        {careSettings.toxicity.notes}
+                                    </p>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             <div className="flex items-center justify-between gap-3 pt-2">
                 <button
                     type="button"
@@ -200,6 +308,8 @@ export default function CareSettings({ photo, plant, onBack }) {
                 </button>
                 <button
                     type="button"
+                    onClick={onSave}
+                    disabled={loading}
                     className="cursor-pointer rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-600"
                 >
                     Save Plant
