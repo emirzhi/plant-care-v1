@@ -9,7 +9,7 @@ import { FaSeedling, FaPlus } from "react-icons/fa6";
 import { PiCactusFill, PiFlowerFill, PiTreeFill, PiLeafFill, PiTreePalmFill, PiPottedPlantFill } from "react-icons/pi";
 import { signOut } from "@/lib/actions/auth";
 
-const navLinks = ["My Collection", "My Tasks", "Settings"];
+const navLinks = ["My Collection", "Settings"];
 
 const tabs = [
     { label: "All Plants", icon: PiPottedPlantFill },

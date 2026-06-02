@@ -24,7 +24,7 @@ export default function Form() {
 
                 <div className="mb-8 text-center">
                     <Image
-                        src="/image.jpg"
+                        src="/icons/image_192x192.png"
                         alt="Plant Care Logo"
                         width={64}
                         height={64}

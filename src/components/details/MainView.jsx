@@ -19,7 +19,7 @@ export default function MainView({ plant, tasks, careProfile }) {
                     </Link>
                     <div className="flex items-center gap-2">
                         <Image
-                            src="/image.jpg"
+                            src="/icons/image_192x192.png"
                             alt="Plant Care Logo"
                             width={32}
                             height={32}

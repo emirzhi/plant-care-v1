@@ -3,26 +3,26 @@
   "short_name": "Plant Care V1",
   "icons": [
     {
-      "src": "/icons/logo-512.png",
+      "src": "/icons/image_512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/icons/logo-192.png",
+      "src": "/icons/image_192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     }
   ],
   "screenshots": [
     {
-      "src": "/screenshots/desktop-screenshot.png",
+      "src": "/screenshots/Screenshot_1920x1080.png",
       "sizes": "1920x1080",
       "type": "image/png",
       "form_factor": "wide",
       "label": "Main app view"
     },
     {
-      "src": "/screenshots/mobile-screenshot.png",
+      "src": "/screenshots/Screenshot_430x932.png",
       "sizes": "430x932",
       "type": "image/png",
       "form_factor": "narrow",

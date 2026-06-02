@@ -24,8 +24,8 @@ self.addEventListener("push", (event) => {
     const title = payload.title || "Plant Care";
     const options = {
         body: payload.body || "",
-        icon: payload.icon || "/icons/logo-192.png",
-        badge: payload.badge || "/icons/logo-192.png",
+        icon: payload.icon || "/icons/image_192x192.png",
+        badge: payload.badge || "/icons/image_192x192.png",
         tag: payload.tag || "plant-care-due",
         data: { url: payload.url || "/plants" },
     };
