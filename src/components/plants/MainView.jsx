@@ -22,7 +22,7 @@ const tabs = [
     { label: "Other", icon: FaSeedling },
 ];
 
-const filterMap = {
+export const filterMap = {
     "All Plants": null,
     "Houseplants": ["houseplant"],
     "Succulents & Cacti": ["succulent", "cactus"],
