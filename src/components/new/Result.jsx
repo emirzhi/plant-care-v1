@@ -26,7 +26,7 @@ export default function Result({
     };
 
     return (
-        <section className="space-y-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+        <div className="space-y-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-4">
                 <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-stone-100">
                     {photo?.previewUrl && (
@@ -186,6 +186,6 @@ export default function Result({
                     )}
                 </button>
             </div>
-        </section>
+        </div>
     );
 }

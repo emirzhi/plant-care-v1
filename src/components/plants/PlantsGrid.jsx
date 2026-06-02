@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PlantsCard from "@/components/plants/PlantsCard";
 
 export default function PlantsGrid({ plants = [] }) {
@@ -12,7 +13,13 @@ export default function PlantsGrid({ plants = [] }) {
     return (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {plants.map((plant) => (
-                <PlantsCard key={plant.id} plant={plant} />
+                <Link
+                    key={plant.id}
+                    href={`/plants/${plant.id}`}
+                    className="block rounded-lg transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-300"
+                >
+                    <PlantsCard plant={plant} />
+                </Link>
             ))}
         </div>
     );

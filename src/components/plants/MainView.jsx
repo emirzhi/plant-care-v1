@@ -3,11 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import PlantsGrid from "@/components/plants/PlantsGrid";
+import SettingsModal from "@/components/settings/SettingsModal";
 import { FaHome } from "react-icons/fa";
 import { FaSeedling, FaPlus } from "react-icons/fa6";
 import { PiCactusFill, PiFlowerFill, PiTreeFill, PiLeafFill, PiTreePalmFill, PiPottedPlantFill } from "react-icons/pi";
+import { signOut } from "@/lib/actions/auth";
 
-const navLinks = ["My Collection", "My Tasks", "My Reports", "About"];
+const navLinks = ["My Collection", "My Tasks", "Settings"];
 
 const tabs = [
     { label: "All Plants", icon: PiPottedPlantFill },
@@ -33,6 +35,7 @@ const filterMap = {
 
 export default function MainView({ plants = [] }) {
     const [activeTab, setActiveTab] = useState("All Plants");
+    const [settingsOpen, setSettingsOpen] = useState(false);
 
     const filteredPlants = filterMap[activeTab] ? plants.filter((p) => filterMap[activeTab].includes(p.type)) : plants;
 
@@ -44,18 +47,23 @@ export default function MainView({ plants = [] }) {
                         <span className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-400 text-white font-bold">
                             P
                         </span>
-                        <span className="font-bold text-stone-900">PlantCare</span>
+                        <span className="font-bold text-stone-900 uppercase">Plant Care</span>
                     </div>
 
                     <nav className="flex gap-6 text-sm text-stone-700">
                         {navLinks.map((link) => (
-                            <button key={link} type="button" className="hover:text-emerald-700 cursor-pointer">
+                            <button
+                                key={link}
+                                type="button"
+                                onClick={link === "Settings" ? () => setSettingsOpen(true) : undefined}
+                                className="hover:text-emerald-700 cursor-pointer"
+                            >
                                 {link}
                             </button>
                         ))}
                     </nav>
 
-                    <button type="button" className="cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-800">
+                    <button type="button" className="cursor-pointer rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-800" onClick={signOut}>
                         Sign Out
                     </button>
                 </header>
@@ -93,6 +101,8 @@ export default function MainView({ plants = [] }) {
 
                 <PlantsGrid plants={filteredPlants} />
             </div>
+
+            <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
         </div>
     );
 }

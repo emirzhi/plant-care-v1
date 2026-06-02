@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
+import { getSupabaseAdminClient } from "@/lib/supabase/admin";
 import { redirect } from "next/navigation";
-import MainView from "@/components/id/MainView";
+import MainView from "@/components/details/MainView";
 
 export default async function PlantDetail({ params }) {
     const { id } = await params;
@@ -9,24 +10,31 @@ export default async function PlantDetail({ params }) {
 
     if (!user) redirect("/signin");
 
-    const { data, error } = await supabase.from("plants").select("*").eq("id", id).maybeSingle();
+    const { data: plant, error } = await supabase
+        .from("plants")
+        .select("*")
+        .eq("id", id)
+        .maybeSingle();
 
-    const paths = data
-        .filter(plant => plant.photo_url)
-        .map(plant => plant.photo_url);
-
-    const { data: signed, error: signedError } = await supabase.storage
+    const { data: signed } = await supabase.storage
         .from("plant-photos")
-        .createSignedUrls(paths, 3600);
+        .createSignedUrl(plant.photo_url, 3600);
 
-    const plantsWithPhotos = data.map((plant) => {
-        const signedUrlObj = signed.find((s) => s.path === plant.photo_url);
 
-        return {
-            ...plant,
-            photo_url: signedUrlObj ? signedUrlObj.signedUrl : null,
-        };
-    })
+    const { data: tasks } = await supabase
+        .from("care_tasks")
+        .select("*")
+        .eq("plant_id", id)
+        .order("next_due_at", { ascending: true });
 
-    return <MainView plants={plantsWithPhotos} />
+    const admin = await getSupabaseAdminClient();
+    const { data: profile } = await admin
+        .from("care_profiles")
+        .select("profile_json")
+        .ilike("species_scientific", plant.species_scientific)
+        .maybeSingle();
+
+    return (
+        <MainView plant={{ ...plant, photo_url: signed?.signedUrl }} tasks={tasks} careProfile={profile?.profile_json} />
+    );
 }

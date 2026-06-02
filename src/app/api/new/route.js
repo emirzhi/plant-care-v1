@@ -11,7 +11,7 @@ export async function POST(request) {
 
     if (!body) return NextResponse.json({ error: "Missing plant info." }, { status: 400 });
 
-    const { plant, healthIssues, care, file } = body;
+    const { plant, healthIssues, care, tasks, file } = body;
 
     const { data: imgData, error } = await supabase.storage
         .from("plant-photos")
@@ -40,6 +40,20 @@ export async function POST(request) {
             .single();
 
         if (error || plantError) return NextResponse.json({ error: "Failed to save plant data." }, { status: 500 });
+
+        console.log("Tasks to insert:", tasks);
+
+        const { data: taskData, error: taskError } = await supabase
+            .from("care_tasks")
+            .insert(
+                tasks.map((task) => ({
+                    task_type: task.task_type,
+                    interval_days: task.interval_days,
+                    paused: task.paused,
+                    next_due_at: new Date(Date.now() + task.interval_days * 24 * 60 * 60 * 1000).toISOString(),
+                    plant_id: plantData.id
+                }))
+            );
 
         return NextResponse.json({ success: true, plantId: plantData.id });
     } catch (error) {

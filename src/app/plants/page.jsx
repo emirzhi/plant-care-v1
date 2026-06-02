@@ -25,7 +25,7 @@ export default async function Plants() {
             ...plant,
             photo_url: signedUrlObj ? signedUrlObj.signedUrl : null,
         };
-    })    
-    
+    })
+
     return <MainView plants={plantsWithPhotos} />
 }

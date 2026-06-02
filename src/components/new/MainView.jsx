@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { FaArrowLeft } from "react-icons/fa6";
 import Identify from "@/components/new/Identify";
 import Result from "@/components/new/Result";
@@ -90,7 +91,7 @@ export default function MainView() {
         }
     }
 
-    const handleSavePlant = async () => {
+    const handleSavePlant = async (tasks) => {
         setLoading(true);
         try {
             const response = await fetch("/api/new", {
@@ -100,16 +101,12 @@ export default function MainView() {
                     plant: { ...selected, nickname, location, acquiredAt },
                     healthIssues: identifyResult?.healthIssues || null,
                     care: careSettings,
+                    tasks: tasks,
                     file: base64Photo
                 }),
             });
-            const data = await response.json();
-            if (data.success) {
-                // Redirect to plant detail page or show success message
-                redirect(`/plants`);
-            } else {
-                console.error("Error saving plant:", data.error);
-            }
+            await response.json();
+            redirect("/plants");
         } catch (error) {
             console.error("Network error during plant saving:", error);
         } finally {
@@ -126,13 +123,17 @@ export default function MainView() {
                         className="flex items-center gap-2 text-sm text-stone-700 hover:text-emerald-700"
                     >
                         <FaArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
-                        <span>Back to plants</span>
+                        <span>Back to collection</span>
                     </Link>
                     <div className="flex items-center gap-2">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-400 text-white font-bold">
-                            P
-                        </span>
-                        <span className="font-bold text-stone-900">PlantCare</span>
+                        <Image
+                            src="/image.jpg"
+                            alt="Plant Care Logo"
+                            width={32}
+                            height={32}
+                            className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-400 text-white font-bold"
+                        />
+                        <span className="font-bold text-stone-900 uppercase">Plant Care</span>
                     </div>
                 </header>
 
@@ -212,8 +213,8 @@ export default function MainView() {
                         onNicknameChange={setNickname}
                         setLocation={setLocation}
                         location={location}
-                        acquisitionDate={acquiredAt}
-                        setAcquisitionDate={setAcquiredAt}
+                        acquiredAt={acquiredAt}
+                        setAcquiredAt={setAcquiredAt}
                     />
                 )}
             </div>

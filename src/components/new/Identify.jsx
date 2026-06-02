@@ -23,7 +23,7 @@ export default function Identify({ photo, onPhotoChange, onIdentify, loading = f
     };
 
     return (
-        <section className="space-y-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+        <div className="space-y-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
             <div className="space-y-1 text-center">
                 <h1 className="text-2xl font-semibold text-stone-900">
                     Identify your plant
@@ -128,6 +128,6 @@ export default function Identify({ photo, onPhotoChange, onIdentify, loading = f
                     </>
                 )}
             </button>
-        </section>
+        </div>
     );
 }

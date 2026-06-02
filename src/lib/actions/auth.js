@@ -1,6 +1,6 @@
 'use server';
 
-import {createClient} from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export async function signInWithEmail(email) {
@@ -23,7 +23,13 @@ export async function signInWithGoogle() {
         }
     });
 
-    if(data.url){
+    if (data.url) {
         redirect(data.url);
     }
+}
+
+export async function signOut() {
+    const supabase = await createClient();
+    await supabase.auth.signOut();
+    redirect("/signin");
 }

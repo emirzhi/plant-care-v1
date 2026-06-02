@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { SerwistProvider } from "@serwist/next/react";
 import "./globals.css";
 
 const APP_NAME = "Plant Care V1";
@@ -42,7 +43,9 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SerwistProvider swUrl="/sw.js">{children}</SerwistProvider>
+      </body>
     </html>
   );
 }

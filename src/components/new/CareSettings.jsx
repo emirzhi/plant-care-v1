@@ -37,7 +37,7 @@ const buildTasksFromRoutine = (routine) => {
         {
             task_type: "rotate",
             interval_days: routine.rotation_days,
-            paused: !routine.rotation_days,
+            paused: false,
         },
         {
             task_type: "fertilize",
@@ -46,21 +46,30 @@ const buildTasksFromRoutine = (routine) => {
         },
         {
             task_type: "mist",
-            interval_days: routine.mist?.interval_days ?? 0,
-            paused: routine.mist?.interval_days == null,
+            interval_days: routine.mist?.interval_days,
+            paused: false,
         },
-    ];
+    ].filter((t) => t.interval_days != null && t.interval_days > 0);
 };
 
 export default function CareSettings({ photo, plant, careSettings, onBack, onSave, loading, nickname, onNicknameChange, location, setLocation, acquiredAt, setAcquiredAt }) {
     const [tasks, setTasks] = useState(() => buildTasksFromRoutine(careSettings));
+    const [addingCustomTask, setAddingCustomTask] = useState(false);
+    const [customName, setCustomName] = useState("");
 
     const updateTask = (i, patch) => {
         setTasks((prev) => prev.map((t, idx) => (idx === i ? { ...t, ...patch } : t)));
     };
 
+    const handleCustomTaskAdd = () => {
+        if (!customName.trim()) return;
+        setTasks((prev) => [...prev, { task_type: customName.trim().toLowerCase(), interval_days: 1, paused: false }]);
+        setCustomName("");
+        setAddingCustomTask(false);
+    }
+
     return (
-        <section className="space-y-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
+        <div className="space-y-6 rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
             <div className="flex items-center gap-4 rounded-xl bg-emerald-50/60 p-4">
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-stone-100">
                     {photo?.previewUrl ? (
@@ -198,13 +207,41 @@ export default function CareSettings({ photo, plant, careSettings, onBack, onSav
                     })}
                 </div>
 
-                <button
-                    type="button"
-                    className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-stone-300 px-4 py-3 text-sm text-stone-600 hover:border-emerald-400 hover:text-emerald-700"
-                >
-                    <PiPlusBold className="h-4 w-4" />
-                    Add custom task
-                </button>
+                {addingCustomTask ? (
+                    <div className="flex flex-row items-end gap-3 w-full">
+                        <label className="block w-full">
+                            <span className="mb-1 block text-sm font-medium text-stone-700">
+                                Task name
+                            </span>
+                            <input
+                                type="text"
+                                value={customName}
+                                onChange={(e) => setCustomName(e.target.value)}
+                                placeholder="e.g. Prune"
+                                className="w-full rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-sm text-stone-900 outline-none focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
+                            />
+                        </label>
+                        <div className="w-15">
+                            <button
+                                type="button"
+                                onClick={() => handleCustomTaskAdd()}
+                                className="mt-2 flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-emerald-500 px-4 py-3 text-sm font-medium text-white hover:bg-emerald-600"
+                            >
+                                <PiPlusBold className="h-4 w-4" />
+                            </button>
+                        </div>
+                    </div>
+                ) : (
+                    <button
+                        type="button"
+                        onClick={() => setAddingCustomTask(true)}
+                        className="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-stone-300 px-4 py-3 text-sm text-stone-600 hover:border-emerald-400 hover:text-emerald-700"
+                    >
+                        <PiPlusBold className="h-4 w-4" />
+                        Add custom task
+                    </button>
+                )}
+
             </div>
 
             {careSettings && (
@@ -308,13 +345,13 @@ export default function CareSettings({ photo, plant, careSettings, onBack, onSav
                 </button>
                 <button
                     type="button"
-                    onClick={onSave}
+                    onClick={() => onSave(tasks)}
                     disabled={loading}
                     className="cursor-pointer rounded-xl bg-emerald-500 px-5 py-2.5 text-sm font-semibold text-white hover:bg-emerald-600"
                 >
                     Save Plant
                 </button>
             </div>
-        </section>
+        </div>
     );
 }
