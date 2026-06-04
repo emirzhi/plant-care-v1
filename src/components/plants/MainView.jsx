@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import PlantsGrid from "@/components/plants/PlantsGrid";
 import SettingsModal from "@/components/settings/SettingsModal";
 import { FaHome } from "react-icons/fa";
@@ -44,9 +45,13 @@ export default function MainView({ plants = [] }) {
             <div className="mx-auto max-w-6xl space-y-6">
                 <header className="flex items-center justify-between rounded-full bg-white px-6 py-3 shadow-sm">
                     <div className="flex items-center gap-2">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-400 text-white font-bold">
-                            P
-                        </span>
+                        <Image
+                            src="/icons/image_192x192.png"
+                            alt="Plant Care Logo"
+                            width={32}
+                            height={32}
+                            className="flex h-8 w-8 items-center justify-center rounded-md bg-emerald-400 text-white font-bold"
+                        />
                         <span className="font-bold text-stone-900 uppercase">Plant Care</span>
                     </div>
 
