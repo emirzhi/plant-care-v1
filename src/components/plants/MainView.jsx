@@ -102,6 +102,9 @@ export default function MainView({ plants = [] }) {
                         <FaPlus className="h-4 w-4" aria-hidden="true" />
                         <span>New</span>
                     </Link>
+                    <div>
+                        
+                    </div>
                 </div>
 
                 <PlantsGrid plants={filteredPlants} />

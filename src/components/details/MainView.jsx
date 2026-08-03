@@ -69,12 +69,12 @@ export default function MainView({ plant, tasks, careProfile }) {
                             </div>
                         </div>
 
-                        {(plant.location_in_home || acquired) && (
+                        {(plant.location || acquired) && (
                             <div className="space-y-3 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
-                                {plant.location_in_home && (
+                                {plant.location && (
                                     <div className="flex items-center gap-2 text-sm text-stone-700">
                                         <PiMapPinFill className="h-4 w-4 shrink-0 text-emerald-500" />
-                                        <span>{plant.location_in_home}</span>
+                                        <span>{plant.location}</span>
                                     </div>
                                 )}
                             </div>

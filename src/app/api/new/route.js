@@ -30,9 +30,9 @@ export async function POST(request) {
 
                 type: plant.type || "other",
 
-                health_issues_at_acquisition: healthIssues || null,
+                health_issues: healthIssues || null,
 
-                location_in_home: plant.location || null,
+                location: plant.location || null,
                 nickname: plant.nickname || null,
                 acquired_at: plant.acquiredAt || null,
             })
@@ -40,8 +40,6 @@ export async function POST(request) {
             .single();
 
         if (error || plantError) return NextResponse.json({ error: "Failed to save plant data." }, { status: 500 });
-
-        console.log("Tasks to insert:", tasks);
 
         const { data: taskData, error: taskError } = await supabase
             .from("care_tasks")
