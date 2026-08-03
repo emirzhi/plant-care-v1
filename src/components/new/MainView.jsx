@@ -44,6 +44,8 @@ export default function MainView() {
             });
             const data = await response.json();
 
+            console.log("Identification result:", data);
+
             const candidates = [
                 {
                     species_scientific: data.primary.scientific_name,

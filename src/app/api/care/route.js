@@ -7,7 +7,7 @@ import { z } from "zod";
 
 const SYSTEM_PROMPT = `You are a horticulture expert. Given a plant species, produce a concise, practical care profile.
 
-Return ONLY a JSON object — no markdown, no code fences, no preamble or explanation — matching exactly this shape:
+RETURN ONLY A JSON OBJECT — NO MARKDOWN, NO CODE FENCES, NO PREAMBLE OR EXPLANATION — MATCHING EXACTLY THIS SHAPE:
 {
   "watering": { "interval_days_summer": int, "interval_days_winter": int, "method": string, "signs_thirsty": string, "signs_overwatered": string },
   "fertilizing": { "interval_days_growing_season": int, "interval_days_dormant": int or null, "type": string },

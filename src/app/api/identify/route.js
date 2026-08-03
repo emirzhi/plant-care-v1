@@ -6,7 +6,7 @@ import { z } from "zod";
 
 const SYSTEM_PROMPT = `You are a botanist specializing in plant identification. You are shown a single photo of a plant and must identify the most likely species.
 
-Return ONLY a JSON object — no markdown, no code fences, no preamble or explanation — matching exactly this shape:
+Return ONLY a JSON object — NO MARKDOWN, NO CODE FENCES, NO PREAMBLE OR EXPLANATION — matching exactly this shape:
 {
   "primary": { "common_name": string, "scientific_name": string, "confidence": number, "type": "houseplant" | "succulent" | "cacti" | "flowering" | "tree" | "shrub" | "herb" | "edible" | "fern" | "palm" | "other" },
   "alternatives": [ { "common_name": string, "scientific_name": string, "confidence": number, "type": "houseplant" | "succulent" | "cacti" | "flowering" | "tree" | "shrub" | "herb" | "edible" | "fern" | "palm" | "other" } ],
@@ -74,6 +74,8 @@ export async function POST(request) {
         },
       ]
     })
+
+    console.log("Anthropic response:", response);
     
     const raw = response.content.find((part) => part.type === "text")?.text || "";
 
