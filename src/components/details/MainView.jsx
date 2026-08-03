@@ -69,7 +69,7 @@ export default function MainView({ plant, tasks, careProfile }) {
                             </div>
                         </div>
 
-                        {(plant.location || acquired) && (
+                        {(plant.location || plant.acquired_at) && (
                             <div className="space-y-3 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
                                 {plant.location && (
                                     <div className="flex items-center gap-2 text-sm text-stone-700">
