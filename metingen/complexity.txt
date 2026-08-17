@@ -1,0 +1,261 @@
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\care\route.js
+   32:8   warning  Async function 'POST' has a complexity of 13. Maximum allowed is 0  complexity
+  119:46  warning  Arrow function has a complexity of 1. Maximum allowed is 0          complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\cron\check-due\route.js
+   7:1  warning  Function 'authorized' has a complexity of 5. Maximum allowed is 0  complexity
+  14:8  warning  Async function 'GET' has a complexity of 3. Maximum allowed is 0   complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\identify\route.js
+  26:8   warning  Async function 'POST' has a complexity of 11. Maximum allowed is 0  complexity
+  80:46  warning  Arrow function has a complexity of 1. Maximum allowed is 0          complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\new\route.js
+   4:8   warning  Async function 'POST' has a complexity of 14. Maximum allowed is 0  complexity
+  47:34  warning  Arrow function has a complexity of 1. Maximum allowed is 0          complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\remove\route.js
+  1:8  warning  Async function 'DELETE' has a complexity of 4. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\tasks\complete\route.js
+  4:8  warning  Async function 'POST' has a complexity of 5. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\tasks\update\route.js
+  4:8  warning  Async function 'POST' has a complexity of 11. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\web-push\preferences\route.js
+   4:8  warning  Async function 'GET' has a complexity of 6. Maximum allowed is 0   complexity
+  22:8  warning  Async function 'PUT' has a complexity of 11. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\api\web-push\subscribe\route.js
+   4:8  warning  Async function 'POST' has a complexity of 7. Maximum allowed is 0    complexity
+  29:8  warning  Async function 'DELETE' has a complexity of 3. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\auth\callback\route.js
+  4:8  warning  Async function 'GET' has a complexity of 9. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\layout.js
+  40:16  warning  Function 'RootLayout' has a complexity of 1. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\page.js
+  4:16  warning  Async function 'Home' has a complexity of 2. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\plants\[id]\page.jsx
+  6:16  warning  Async function 'PlantDetail' has a complexity of 4. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\plants\new\page.jsx
+  3:16  warning  Async function 'New' has a complexity of 1. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\plants\page.jsx
+   5:16  warning  Async function 'Plants' has a complexity of 2. Maximum allowed is 0  complexity
+  14:23  warning  Arrow function has a complexity of 1. Maximum allowed is 0           complexity
+  15:20  warning  Arrow function has a complexity of 1. Maximum allowed is 0           complexity
+  21:47  warning  Arrow function has a complexity of 2. Maximum allowed is 0           complexity
+  22:46  warning  Arrow function has a complexity of 1. Maximum allowed is 0           complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\signin\page.jsx
+  3:16  warning  Function 'SignIn' has a complexity of 1. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\app\sw.js
+  14:39  warning  Arrow function has a complexity of 9. Maximum allowed is 0  complexity
+  36:52  warning  Arrow function has a complexity of 3. Maximum allowed is 0  complexity
+  43:29  warning  Arrow function has a complexity of 3. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\details\MainView.jsx
+  8:16  warning  Function 'MainView' has a complexity of 9. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\details\NeedRow.jsx
+  1:16  warning  Function 'NeedRow' has a complexity of 6. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\details\PlantNeeds.jsx
+   7:16  warning  Function 'PlantNeeds' has a complexity of 16. Maximum allowed is 0  complexity
+  10:31  warning  Arrow function has a complexity of 1. Maximum allowed is 0          complexity
+  10:57  warning  Arrow function has a complexity of 1. Maximum allowed is 0          complexity
+  52:58  warning  Arrow function has a complexity of 3. Maximum allowed is 0          complexity
+  58:53  warning  Arrow function has a complexity of 1. Maximum allowed is 0          complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\details\Tasks.jsx
+   25:25  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+   27:25  warning  Arrow function has a complexity of 5. Maximum allowed is 0        complexity
+   34:16  warning  Function 'Tasks' has a complexity of 2. Maximum allowed is 0      complexity
+   40:35  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+   40:54  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+   40:70  warning  Arrow function has a complexity of 2. Maximum allowed is 0        complexity
+   42:35  warning  Async arrow function has a complexity of 3. Maximum allowed is 0  complexity
+   60:46  warning  Async arrow function has a complexity of 3. Maximum allowed is 0  complexity
+   80:33  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+   85:40  warning  Async arrow function has a complexity of 4. Maximum allowed is 0  complexity
+  107:39  warning  Arrow function has a complexity of 14. Maximum allowed is 0       complexity
+  131:63  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+  147:57  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+  159:65  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+  170:61  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+  180:61  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\new\CareSettings.jsx
+   28:22  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+   30:41  warning  Arrow function has a complexity of 4. Maximum allowed is 0            complexity
+   52:18  warning  Arrow function has a complexity of 2. Maximum allowed is 0            complexity
+   55:16  warning  Function 'CareSettings' has a complexity of 28. Maximum allowed is 0  complexity
+   56:43  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+   60:35  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+   61:25  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+   61:46  warning  Arrow function has a complexity of 2. Maximum allowed is 0            complexity
+   64:36  warning  Arrow function has a complexity of 2. Maximum allowed is 0            complexity
+   66:25  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  111:43  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  124:43  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  137:43  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  155:42  warning  Arrow function has a complexity of 5. Maximum allowed is 0            complexity
+  184:55  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  196:49  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  219:47  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  227:45  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  237:37  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+  348:33  warning  Arrow function has a complexity of 1. Maximum allowed is 0            complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\new\Identify.jsx
+    8:16  warning  Function 'Identify' has a complexity of 7. Maximum allowed is 0  complexity
+   12:28  warning  Arrow function has a complexity of 3. Maximum allowed is 0       complexity
+   20:27  warning  Arrow function has a complexity of 3. Maximum allowed is 0       complexity
+   79:33  warning  Arrow function has a complexity of 2. Maximum allowed is 0       complexity
+   88:33  warning  Arrow function has a complexity of 2. Maximum allowed is 0       complexity
+  116:29  warning  Arrow function has a complexity of 2. Maximum allowed is 0       complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\new\MainView.jsx
+   19:16  warning  Function 'MainView' has a complexity of 7. Maximum allowed is 0   complexity
+   31:46  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+   33:41  warning  Async arrow function has a complexity of 5. Maximum allowed is 0  complexity
+   56:54  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+   78:59  warning  Async arrow function has a complexity of 2. Maximum allowed is 0  complexity
+   96:43  warning  Async arrow function has a complexity of 4. Maximum allowed is 0  complexity
+  143:52  warning  Arrow function has a complexity of 6. Maximum allowed is 0        complexity
+  195:36  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+  196:40  warning  Arrow function has a complexity of 3. Maximum allowed is 0        complexity
+  211:36  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\new\Result.jsx
+    8:16  warning  Function 'Result' has a complexity of 13. Maximum allowed is 0  complexity
+   22:31  warning  Arrow function has a complexity of 5. Maximum allowed is 0      complexity
+   61:37  warning  Arrow function has a complexity of 5. Maximum allowed is 0      complexity
+   68:45  warning  Arrow function has a complexity of 1. Maximum allowed is 0      complexity
+  122:58  warning  Arrow function has a complexity of 1. Maximum allowed is 0      complexity
+  140:37  warning  Arrow function has a complexity of 1. Maximum allowed is 0      complexity
+  150:33  warning  Arrow function has a complexity of 1. Maximum allowed is 0      complexity
+  173:33  warning  Arrow function has a complexity of 1. Maximum allowed is 0      complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\plants\MainView.jsx
+   37:16  warning  Function 'MainView' has a complexity of 3. Maximum allowed is 0  complexity
+   41:69  warning  Arrow function has a complexity of 1. Maximum allowed is 0       complexity
+   59:46  warning  Arrow function has a complexity of 2. Maximum allowed is 0       complexity
+   63:67  warning  Arrow function has a complexity of 1. Maximum allowed is 0       complexity
+   79:63  warning  Arrow function has a complexity of 2. Maximum allowed is 0       complexity
+   83:49  warning  Arrow function has a complexity of 1. Maximum allowed is 0       complexity
+  113:60  warning  Arrow function has a complexity of 1. Maximum allowed is 0       complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\plants\PlantsCard.jsx
+  3:16  warning  Function 'PlantsCard' has a complexity of 5. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\plants\PlantsGrid.jsx
+   4:16  warning  Function 'PlantsGrid' has a complexity of 3. Maximum allowed is 0  complexity
+  15:33  warning  Arrow function has a complexity of 1. Maximum allowed is 0         complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\settings\SettingsModal.jsx
+   15:49  warning  Arrow function has a complexity of 1. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   17:16  warning  Function 'SettingsModal' has a complexity of 10. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          complexity
+   27:18  warning  Arrow function has a complexity of 3. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   29:9   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  27 |     useEffect(() => {
+  28 |         if (!open) return;
+> 29 |         setError(null);
+     |         ^^^^^^^^ Avoid calling setState() directly within an effect
+  30 |         setSavedHour(false);
+  31 |
+  32 |         if (!pushSupported()) {  react-hooks/set-state-in-effect
+   38:46  warning  Arrow function has a complexity of 2. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   41:19  warning  Arrow function has a complexity of 1. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   46:18  warning  Arrow function has a complexity of 3. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   51:27  warning  Arrow function has a complexity of 4. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   56:23  warning  Arrow function has a complexity of 1. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   57:19  warning  Arrow function has a complexity of 1. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+   64:29  warning  Async arrow function has a complexity of 4. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               complexity
+   82:37  warning  Async arrow function has a complexity of 4. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               complexity
+  100:30  warning  Arrow function has a complexity of 1. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+  141:59  warning  Arrow function has a complexity of 1. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+  144:70  warning  Arrow function has a complexity of 1. Maximum allowed is 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\components\signin\Form.jsx
+   8:16  warning  Function 'Form' has a complexity of 1. Maximum allowed is 0       complexity
+  11:36  warning  Async arrow function has a complexity of 1. Maximum allowed is 0  complexity
+  16:42  warning  Async arrow function has a complexity of 1. Maximum allowed is 0  complexity
+  50:43  warning  Arrow function has a complexity of 1. Maximum allowed is 0        complexity
+  54:31  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`   react/no-unescaped-entities
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\actions\auth.js
+   7:8  warning  Async function 'signInWithEmail' has a complexity of 1. Maximum allowed is 0   complexity
+  18:8  warning  Async function 'signInWithGoogle' has a complexity of 2. Maximum allowed is 0  complexity
+  34:8  warning  Async function 'signOut' has a complexity of 1. Maximum allowed is 0           complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\anthropic\client.js
+  3:8  warning  Function 'getAnthropicClient' has a complexity of 1. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\image.js
+   2:8   warning  Async function 'blobToBase64' has a complexity of 1. Maximum allowed is 0   complexity
+   3:48  warning  Arrow function has a complexity of 1. Maximum allowed is 0                  complexity
+   5:31  warning  Arrow function has a complexity of 1. Maximum allowed is 0                  complexity
+  12:8   warning  Async function 'compressImage' has a complexity of 2. Maximum allowed is 0  complexity
+  32:40  warning  Arrow function has a complexity of 1. Maximum allowed is 0                  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\notifications.js
+   5:1   warning  Async function 'fetchDueTasks' has a complexity of 3. Maximum allowed is 0     complexity
+  16:1   warning  Function 'pendingOnly' has a complexity of 1. Maximum allowed is 0             complexity
+  18:13  warning  Arrow function has a complexity of 2. Maximum allowed is 0                     complexity
+  22:1   warning  Function 'foldByUser' has a complexity of 7. Maximum allowed is 0              complexity
+  47:1   warning  Function 'toPayload' has a complexity of 3. Maximum allowed is 0               complexity
+  48:48  warning  Arrow function has a complexity of 1. Maximum allowed is 0                     complexity
+  59:1   warning  Function 'hourInZone' has a complexity of 2. Maximum allowed is 0              complexity
+  69:1   warning  Async function 'loadProfiles' has a complexity of 2. Maximum allowed is 0      complexity
+  75:41  warning  Arrow function has a complexity of 1. Maximum allowed is 0                     complexity
+  78:8   warning  Async function 'sendDueReminders' has a complexity of 5. Maximum allowed is 0  complexity
+  93:55  warning  Async arrow function has a complexity of 11. Maximum allowed is 0              complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\supabase\admin.js
+  3:8  warning  Async function 'getSupabaseAdminClient' has a complexity of 1. Maximum allowed is 0  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\supabase\proxy.js
+   4:8   warning  Async function 'updateSession' has a complexity of 5. Maximum allowed is 0  complexity
+  14:17  warning  Method 'getAll' has a complexity of 1. Maximum allowed is 0                 complexity
+  17:17  warning  Method 'setAll' has a complexity of 1. Maximum allowed is 0                 complexity
+  18:60  warning  Arrow function has a complexity of 1. Maximum allowed is 0                  complexity
+  22:69  warning  Arrow function has a complexity of 1. Maximum allowed is 0                  complexity
+  24:68  warning  Arrow function has a complexity of 1. Maximum allowed is 0                  complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\supabase\server.js
+   4:8   warning  Async function 'createClient' has a complexity of 1. Maximum allowed is 0  complexity
+  12:17  warning  Method 'getAll' has a complexity of 1. Maximum allowed is 0                complexity
+  15:17  warning  Method 'setAll' has a complexity of 2. Maximum allowed is 0                complexity
+  17:73  warning  Arrow function has a complexity of 1. Maximum allowed is 0                 complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\webPushClient.js
+   1:8  warning  Function 'pushSupported' has a complexity of 4. Maximum allowed is 0                  complexity
+  10:1  warning  Function 'urlBase64ToUint8Array' has a complexity of 2. Maximum allowed is 0          complexity
+  19:8  warning  Async function 'getExistingSubscription' has a complexity of 2. Maximum allowed is 0  complexity
+  25:8  warning  Function 'detectTimezone' has a complexity of 3. Maximum allowed is 0                 complexity
+  33:8  warning  Async function 'getPreferences' has a complexity of 2. Maximum allowed is 0           complexity
+  39:8  warning  Async function 'savePreferences' has a complexity of 2. Maximum allowed is 0          complexity
+  48:8  warning  Async function 'enablePush' has a complexity of 5. Maximum allowed is 0               complexity
+  71:8  warning  Async function 'disablePush' has a complexity of 2. Maximum allowed is 0              complexity
+
+C:\Users\emirb\repos\plant-care-v1\src\lib\webpush.js
+  5:8  warning  Function 'getWebPush' has a complexity of 4. Maximum allowed is 0  complexity
+
+✖ 166 problems (2 errors, 164 warnings)
+

@@ -1,0 +1,6 @@
+projectKey=plant-care-v1
+serverUrl=http://localhost:9001
+serverVersion=26.8.0.126808
+dashboardUrl=http://localhost:9001/dashboard?id=plant-care-v1
+ceTaskId=1c1fa2bb-dfad-4749-9630-860a1574ac0d
+ceTaskUrl=http://localhost:9001/api/ce/task?id=1c1fa2bb-dfad-4749-9630-860a1574ac0d
